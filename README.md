@@ -1,3 +1,24 @@
+# @CERES:
+
+This module provides an experimental direct-to-s3 storage layer for ICIN,
+its forked from an unmerged PR from ctrox/csi-s3 issue #53
+
+To build:
+```
+make container
+```
+
+To deploy build to ICIN just tag it and push to the docker repo ICIN pulls from:
+```
+# if you haven't authed gcloud with `ceres-imaging-science` yet, first:
+# gcloud auth login
+
+gcloud auth configure-docker us-docker.pkg.dev
+docker tag ctrox/csi-s3:dev us-docker.pkg.dev/ceres-imaging-science/ceres-public/csi-s3:ceres
+docker push us-docker.pkg.dev/ceres-imaging-science/ceres-public/csi-s3:ceres
+```
+
+
 # CSI for S3
 
 This is a Container Storage Interface ([CSI](https://github.com/container-storage-interface/spec/blob/master/spec.md)) for S3 (or S3 compatible) storage. This can dynamically allocate buckets and mount them via a fuse mount into any container.
