@@ -12,8 +12,8 @@ To deploy build to ICIN just tag it and push to the docker repo ICIN pulls from:
 ```
 # if you haven't authed gcloud with `ceres-imaging-science` yet, first:
 # gcloud auth login
+# gcloud auth configure-docker us-docker.pkg.dev
 
-gcloud auth configure-docker us-docker.pkg.dev
 docker tag ctrox/csi-s3:dev us-docker.pkg.dev/ceres-imaging-science/ceres-public/csi-s3:ceres
 docker push us-docker.pkg.dev/ceres-imaging-science/ceres-public/csi-s3:ceres
 ```
