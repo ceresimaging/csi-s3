@@ -81,14 +81,6 @@ func NewClientFromSecret(secret map[string]string) (*s3Client, error) {
 }
 
 func (client *s3Client) BucketExists(bucketName string) (bool, error) {
-	glog.Errorf("@CERES BucketExists(%s)", bucketName)
-	client.minio.TraceErrorsOnlyOn(nil)
-	buckets, err := client.minio.ListBuckets(client.ctx)
-	if err != nil {
-		glog.Errorf("error @CERES BucketExists(%s)", err)
-	} else {
-		glog.Errorf("error @CERES BucketExists", buckets)
-	}
 	return client.minio.BucketExists(client.ctx, bucketName)
 }
 
