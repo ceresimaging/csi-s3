@@ -57,10 +57,10 @@ func (rclone *rcloneMounter) Mount(source string, target string) error {
 		// From here on its @Ceres Customizations:
 		"--attr-timeout=1m0s",
 		"--dir-cache-time=10m0s",
-		"--max-read-ahead=1Mi",
+		"--max-read-ahead=1M",
 		"--vfs-cache-mode=full",
 		"--vfs-cache-poll-interval=5m0s",
-		"--vfs-read-ahead=1Mi",
+		"--vfs-read-ahead=1M",
 		"--vfs-write-back=1m0s",
 		"--vfs-write-wait=10s",
 		"--write-back-cache",
