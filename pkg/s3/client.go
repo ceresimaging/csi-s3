@@ -64,6 +64,7 @@ func NewClient(cfg *Config) (*s3Client, error) {
 		return nil, err
 	}
 	client.minio = minioClient
+	client.minio.TraceErrorsOnlyOn(nil)
 	client.ctx = context.Background()
 	return client, nil
 }
