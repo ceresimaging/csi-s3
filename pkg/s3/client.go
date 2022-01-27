@@ -57,7 +57,7 @@ func NewClient(cfg *Config) (*s3Client, error) {
 		endpoint = u.Hostname() + ":" + u.Port()
 	}
 	minioClient, err := minio.New(endpoint, &minio.Options{
-		Creds:  credentials.NewStaticV4(client.Config.AccessKeyID, client.Config.SecretAccessKey, client.Config.Region),
+		Creds:  credentials.NewStaticV4(client.Config.AccessKeyID, client.Config.SecretAccessKey, ""),
 		Secure: ssl,
 	})
 	if err != nil {
@@ -80,6 +80,14 @@ func NewClientFromSecret(secret map[string]string) (*s3Client, error) {
 }
 
 func (client *s3Client) BucketExists(bucketName string) (bool, error) {
+	glog.Errorf("@CERES BucketExists(%s)", bucketName)
+	client.minio.TraceErrorsOnlyOn(nil)
+	buckets, err := client.minio.ListBuckets(client.ctx)
+	if err != nil {
+		glog.Errorf("error @CERES BucketExists(%s)", err)
+	} else {
+		glog.Errorf("error @CERES BucketExists", buckets)
+	}
 	return client.minio.BucketExists(client.ctx, bucketName)
 }
 
